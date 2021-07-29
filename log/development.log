@@ -916,3 +916,876 @@ Processing by UsersController#show as HTML
 Completed 200 OK in 62ms (Views: 57.9ms | ActiveRecord: 0.2ms)
 
 
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210729032227)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210729032227"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddIndexToUsersEmail (20210729032335)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210729032335"]]
+  [1m[35m (3.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddPasswordDigestToUsers (20210729032435)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "password_digest" varchar[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210729032435"]]
+  [1m[35m (3.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddRememberDigestToUsers (20210729164747)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "remember_digest" varchar[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210729164747"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (2.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-29 17:36:43.441959"], ["updated_at", "2021-07-29 17:36:43.441959"]]
+  [1m[35m (4.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "管理者"], ["email", "sample@email.com"], ["created_at", "2021-07-29 17:36:49.320236"], ["updated_at", "2021-07-29 17:36:49.320236"], ["password_digest", "$2a$12$axUh4Z8ImBkgADhBKk.bteTo6pOQOFgXlB6yJYvuWBdsJ8YPcmge2"]]
+  [1m[35m (4.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-1@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (8.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Kallie Hessel"], ["email", "sample-1@email.com"], ["created_at", "2021-07-29 17:36:51.038040"], ["updated_at", "2021-07-29 17:36:51.038040"], ["password_digest", "$2a$12$N57UrCVnrYthI1FMAX6TK.T0k.bT0qL.rgxmEGghy8iSQLq3el6Hq"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-2@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Ms. Curt West"], ["email", "sample-2@email.com"], ["created_at", "2021-07-29 17:36:51.348655"], ["updated_at", "2021-07-29 17:36:51.348655"], ["password_digest", "$2a$12$FmuO9urVcqPBZ4clQW6QIe.WCn8x2eW8WL5bXeq3wZJKKIXTU1RFK"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-3@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Josiah Schmitt"], ["email", "sample-3@email.com"], ["created_at", "2021-07-29 17:36:51.648160"], ["updated_at", "2021-07-29 17:36:51.648160"], ["password_digest", "$2a$12$w99qI7NjnDy/kctmGd8Eo.rR7nIPwjDQ9Wu4vU5r4/1v23oxj8zGa"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-4@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Tam Paucek"], ["email", "sample-4@email.com"], ["created_at", "2021-07-29 17:36:51.949761"], ["updated_at", "2021-07-29 17:36:51.949761"], ["password_digest", "$2a$12$njsq8omNm80tMcRZV9Q55.9fEUVIIy4G3CXvOxg6jjPBPQKD1r3sG"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-5@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Michiko Green"], ["email", "sample-5@email.com"], ["created_at", "2021-07-29 17:36:52.250898"], ["updated_at", "2021-07-29 17:36:52.250898"], ["password_digest", "$2a$12$gjtVbCwsPSAb2Q6aFUmysu.hI7crZe6otYIHmAUWpyZ/5urqefScq"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-6@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Gerry Feil"], ["email", "sample-6@email.com"], ["created_at", "2021-07-29 17:36:52.551585"], ["updated_at", "2021-07-29 17:36:52.551585"], ["password_digest", "$2a$12$qrv6S/oqJQDz9KytkvPeWO05Bk0VajFclf1SjSmndLKtDllGZb3Qu"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-7@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Magda Gerlach"], ["email", "sample-7@email.com"], ["created_at", "2021-07-29 17:36:52.850185"], ["updated_at", "2021-07-29 17:36:52.850185"], ["password_digest", "$2a$12$zup3prGoSQoVyP2v8GdZ4uFrXucCNZkmZOxJul8pRfyac6M/AIcFm"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-8@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (5.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Shaun Morissette"], ["email", "sample-8@email.com"], ["created_at", "2021-07-29 17:36:53.150521"], ["updated_at", "2021-07-29 17:36:53.150521"], ["password_digest", "$2a$12$9pdI3Kfd6IybDglvp0ZGue6Ll1THHhxRryFzOlOUQrDFh/b2bBC62"]]
+  [1m[35m (10.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-9@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Craig Kassulke"], ["email", "sample-9@email.com"], ["created_at", "2021-07-29 17:36:53.468584"], ["updated_at", "2021-07-29 17:36:53.468584"], ["password_digest", "$2a$12$CXac9iCrxQWRMoncgRd9GOsNFSRF9qoG2d7UaOM21v6FzkiDynJNu"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-10@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Benny Bogan"], ["email", "sample-10@email.com"], ["created_at", "2021-07-29 17:36:53.771694"], ["updated_at", "2021-07-29 17:36:53.771694"], ["password_digest", "$2a$12$HniAK4nKbF8Uw1o.W4/XDuugr42iSnvBBveC3xeBzublNocF4nSMO"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-11@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Providencia Daniel"], ["email", "sample-11@email.com"], ["created_at", "2021-07-29 17:36:54.081712"], ["updated_at", "2021-07-29 17:36:54.081712"], ["password_digest", "$2a$12$I595x9d2vScsPoGMD0CDve/sHE/NUumk8nQ3aYQi04KS262bzdik2"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-12@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Prof. Mammie Legros"], ["email", "sample-12@email.com"], ["created_at", "2021-07-29 17:36:54.395641"], ["updated_at", "2021-07-29 17:36:54.395641"], ["password_digest", "$2a$12$rexq1HKUve6iOyPIHptQTOaN1hfcPhCG5TkcbQ8goEY5FPMIVm6s2"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-13@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Gilbert Kuvalis"], ["email", "sample-13@email.com"], ["created_at", "2021-07-29 17:36:54.695125"], ["updated_at", "2021-07-29 17:36:54.695125"], ["password_digest", "$2a$12$.no1c9bcNHf0jieE/5aS6u7Ao0dO.nKH/btKFD9cw8F9xJawGxQVS"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-14@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Ana Kuphal"], ["email", "sample-14@email.com"], ["created_at", "2021-07-29 17:36:54.996148"], ["updated_at", "2021-07-29 17:36:54.996148"], ["password_digest", "$2a$12$YBPicOqFMHu7cwA91rAxW..r5R59fh.ulEXJQRUXlWjwbhPnVjU5S"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-15@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (8.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Darryl Kris"], ["email", "sample-15@email.com"], ["created_at", "2021-07-29 17:36:55.296057"], ["updated_at", "2021-07-29 17:36:55.296057"], ["password_digest", "$2a$12$GlS.qGd4/wu/yPVq6q5jx.OPpPI7RsYwJq9HeoskWU0Ece96GfVIu"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-16@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Alisa Lehner"], ["email", "sample-16@email.com"], ["created_at", "2021-07-29 17:36:55.603002"], ["updated_at", "2021-07-29 17:36:55.603002"], ["password_digest", "$2a$12$FQ3ev3axkSuLAVtOFcKR6OFyp5XVnROhy6TI6npU2YDU8JsJB9eL6"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-17@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lanelle Tremblay DO"], ["email", "sample-17@email.com"], ["created_at", "2021-07-29 17:36:55.904494"], ["updated_at", "2021-07-29 17:36:55.904494"], ["password_digest", "$2a$12$ylsaSJrIT2F9K68w42QETeoisdRK2GiSQVk8BF7XgnPq9GcQGyVEe"]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-18@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Terry Harber Ret."], ["email", "sample-18@email.com"], ["created_at", "2021-07-29 17:36:56.202658"], ["updated_at", "2021-07-29 17:36:56.202658"], ["password_digest", "$2a$12$sGsADn/wada6qnjR7Z92f.KgqshYhMVMXtKnEQv1iLTYktkX8bU/W"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-19@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "The Hon. Miguel Hegmann"], ["email", "sample-19@email.com"], ["created_at", "2021-07-29 17:36:56.502849"], ["updated_at", "2021-07-29 17:36:56.502849"], ["password_digest", "$2a$12$fDd9JsVJB9/epaZoocwP0.aPDBBamhb6zt7bl.F2SJgy6BJ1MXVE."]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-20@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Raymond Parisian"], ["email", "sample-20@email.com"], ["created_at", "2021-07-29 17:36:56.802618"], ["updated_at", "2021-07-29 17:36:56.802618"], ["password_digest", "$2a$12$6mTnSTpLNVoqdlLdkA0y.uDUg4b7GlmK.mmTJs7huLCnqXyGZbKou"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-21@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Msgr. Gaynell Ledner"], ["email", "sample-21@email.com"], ["created_at", "2021-07-29 17:36:57.100924"], ["updated_at", "2021-07-29 17:36:57.100924"], ["password_digest", "$2a$12$9clFjQrKzzj0ozhix3dPMuHiVOhWgV.P4ZbRalcANZbGu9OajUxwy"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-22@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Sen. Ja Larkin"], ["email", "sample-22@email.com"], ["created_at", "2021-07-29 17:36:57.421635"], ["updated_at", "2021-07-29 17:36:57.421635"], ["password_digest", "$2a$12$Es0RWCiqZPc1APTjag.zhes7Rla2bVghdAS5T5ROSHDS2WrmJ2Iji"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-23@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (5.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Emmitt Gulgowski"], ["email", "sample-23@email.com"], ["created_at", "2021-07-29 17:36:57.720611"], ["updated_at", "2021-07-29 17:36:57.720611"], ["password_digest", "$2a$12$F7G0BcCzKmkxvLM3rJANo.9vDg1TKSvwH.ktZ9vJNeyP70x4SFGNW"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-24@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Mildred Wehner"], ["email", "sample-24@email.com"], ["created_at", "2021-07-29 17:36:58.020441"], ["updated_at", "2021-07-29 17:36:58.020441"], ["password_digest", "$2a$12$Uwzf6/WHT1dbIbT92dFfQOFxcsdbla5XlCHFmQ9O8.KsOPIgVFKee"]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-25@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Freddie Bosco"], ["email", "sample-25@email.com"], ["created_at", "2021-07-29 17:36:58.320116"], ["updated_at", "2021-07-29 17:36:58.320116"], ["password_digest", "$2a$12$vBBn9DxlLAIT85XZHbXXUO288aKCARCKy0fxdI65WDE.Tt2znA2Ly"]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-26@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Pres. Ezra Carroll"], ["email", "sample-26@email.com"], ["created_at", "2021-07-29 17:36:58.618223"], ["updated_at", "2021-07-29 17:36:58.618223"], ["password_digest", "$2a$12$d3DZSOO9150gJq6mm3eLBuxLN6AGIhDkSuITuzUHQi0h7tX1Xr8Au"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-27@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Wilfred Bailey"], ["email", "sample-27@email.com"], ["created_at", "2021-07-29 17:36:58.917128"], ["updated_at", "2021-07-29 17:36:58.917128"], ["password_digest", "$2a$12$2mPSAdbb60/eyj7xW23Nxeba1BPLDqrAFA335jt4qJFTRBkBFjd7C"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-28@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jefferson Wiegand Esq."], ["email", "sample-28@email.com"], ["created_at", "2021-07-29 17:36:59.217178"], ["updated_at", "2021-07-29 17:36:59.217178"], ["password_digest", "$2a$12$MQy49AhyDckBGemjfMfxWeAEeo1dKToB2yw0PzGQK2CcxfhzX8SnK"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-29@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Sabrina Feeney PhD"], ["email", "sample-29@email.com"], ["created_at", "2021-07-29 17:36:59.515775"], ["updated_at", "2021-07-29 17:36:59.515775"], ["password_digest", "$2a$12$/udpDE93rQuv3w/HzgNBhOqb.UktaO8oGjnTk./yV1Q1X52W4sroO"]]
+  [1m[35m (12.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-30@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Tiara Herman Jr."], ["email", "sample-30@email.com"], ["created_at", "2021-07-29 17:36:59.866387"], ["updated_at", "2021-07-29 17:36:59.866387"], ["password_digest", "$2a$12$bU4oFKTaLi8eUiq.QamEqe3tFjITl4ddica5c0CAQvMf1FRELHMq."]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-31@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Wilbert Greenholt"], ["email", "sample-31@email.com"], ["created_at", "2021-07-29 17:37:00.186262"], ["updated_at", "2021-07-29 17:37:00.186262"], ["password_digest", "$2a$12$1x2uKjUkH6KVr53hjn3Q4OwKsPCckrjD.rfMupMFs0WVV0TRIRrP2"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-32@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Junior Ward"], ["email", "sample-32@email.com"], ["created_at", "2021-07-29 17:37:00.486413"], ["updated_at", "2021-07-29 17:37:00.486413"], ["password_digest", "$2a$12$tOlEnbIeEvN0q5PGxzKfReWxrb2fSg2PgNBLOlZr4Sajp/00rhCIS"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-33@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Ty O'Connell IV"], ["email", "sample-33@email.com"], ["created_at", "2021-07-29 17:37:00.788452"], ["updated_at", "2021-07-29 17:37:00.788452"], ["password_digest", "$2a$12$qW0Mxm9eMPaH.gJLzZnQqOQldot6bs57t8AcmQAHJEjtj06ax4Sna"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-34@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Msgr. Santos Schaden"], ["email", "sample-34@email.com"], ["created_at", "2021-07-29 17:37:01.085312"], ["updated_at", "2021-07-29 17:37:01.085312"], ["password_digest", "$2a$12$Ra5gJ0AK4Lq1g2zg3rH9Lu6ENajsDJvFb7tcc.HsuuJAyImWyVeYq"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-35@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Miss Wilford Nolan"], ["email", "sample-35@email.com"], ["created_at", "2021-07-29 17:37:01.384372"], ["updated_at", "2021-07-29 17:37:01.384372"], ["password_digest", "$2a$12$CyOEypgubOLyInifK12ZRO5b0HMg874XwPWCITSwliDH7FV5IO0MO"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-36@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Rosio Beier"], ["email", "sample-36@email.com"], ["created_at", "2021-07-29 17:37:01.721261"], ["updated_at", "2021-07-29 17:37:01.721261"], ["password_digest", "$2a$12$37l4fTVCxqFNmcVIzbiTsu0bTPQ5yb0nKZg/msF5xzX51iXtgkOa."]]
+  [1m[35m (8.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-37@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Kitty White"], ["email", "sample-37@email.com"], ["created_at", "2021-07-29 17:37:02.023832"], ["updated_at", "2021-07-29 17:37:02.023832"], ["password_digest", "$2a$12$ZKJWvVIli/hwnMKcKb7VO.BbK8ip6Iu8lKB2cRnrNgX8FAzo26bRu"]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-38@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Yoshie Bayer"], ["email", "sample-38@email.com"], ["created_at", "2021-07-29 17:37:02.321819"], ["updated_at", "2021-07-29 17:37:02.321819"], ["password_digest", "$2a$12$/5Jeq3MPLOyhhXfhaXBHf.18HJ2G3Fnd./l51Kya7L9TqfXGh/n6C"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-39@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Raphael Schumm I"], ["email", "sample-39@email.com"], ["created_at", "2021-07-29 17:37:02.620661"], ["updated_at", "2021-07-29 17:37:02.620661"], ["password_digest", "$2a$12$lDdHgDq8UtPFF9GHRD9sQOsTVBdU7kZvDWDRztavO0x5g4MHyD5Fe"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-40@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Shelby Schmitt"], ["email", "sample-40@email.com"], ["created_at", "2021-07-29 17:37:02.927579"], ["updated_at", "2021-07-29 17:37:02.927579"], ["password_digest", "$2a$12$z4xi9BTSOaWZZBryXtpAg.Ue7smUzS0xK7./t.S7YYJgoTpEexE8a"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-41@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (8.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lorriane Harvey"], ["email", "sample-41@email.com"], ["created_at", "2021-07-29 17:37:03.223643"], ["updated_at", "2021-07-29 17:37:03.223643"], ["password_digest", "$2a$12$ynGaivNXbVqegUOjL35HIen3D1Y/AN4C68/W4p.WvNhLXF6rhmy.m"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-42@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (5.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Ha Bradtke"], ["email", "sample-42@email.com"], ["created_at", "2021-07-29 17:37:03.528783"], ["updated_at", "2021-07-29 17:37:03.528783"], ["password_digest", "$2a$12$fMpsTULEQZULiGoXmWNEqu..LgP969v0OKXvU1kVQiLljZPUCvWoG"]]
+  [1m[35m (10.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-43@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Marylouise Brekke DVM"], ["email", "sample-43@email.com"], ["created_at", "2021-07-29 17:37:03.836694"], ["updated_at", "2021-07-29 17:37:03.836694"], ["password_digest", "$2a$12$ZlLQCqpKgNaMcEfoBG/Vnuqng4jUF.YbYLFZk5eDsx.M3YkjRgmNu"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-44@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Nada Jones"], ["email", "sample-44@email.com"], ["created_at", "2021-07-29 17:37:04.141779"], ["updated_at", "2021-07-29 17:37:04.141779"], ["password_digest", "$2a$12$IWQocfA7BHcqHC4lEeZw5.hei2ZhVGMlBCobUhT2rIqdT8LpGtt4a"]]
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-45@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Enid Turner Jr."], ["email", "sample-45@email.com"], ["created_at", "2021-07-29 17:37:04.449907"], ["updated_at", "2021-07-29 17:37:04.449907"], ["password_digest", "$2a$12$ApQ6HQ/zjkXrALt1//tDd.PtCAYIWBWeJCdkBbXYlPzU4kpMsqlCy"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-46@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jan Parisian"], ["email", "sample-46@email.com"], ["created_at", "2021-07-29 17:37:04.749753"], ["updated_at", "2021-07-29 17:37:04.749753"], ["password_digest", "$2a$12$wKQ3HuvNi0wIwmOkEe2Yo.f7OuqJSoIUNQ81SLVzhValjTIX2B6K6"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-47@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Vito Roob PhD"], ["email", "sample-47@email.com"], ["created_at", "2021-07-29 17:37:05.058622"], ["updated_at", "2021-07-29 17:37:05.058622"], ["password_digest", "$2a$12$sTvRz/4D20rH0d8ELvOoE.b9rG/jC53QHXCg05/yL9xuDkmeUXEY2"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-48@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Matilde Friesen"], ["email", "sample-48@email.com"], ["created_at", "2021-07-29 17:37:05.356206"], ["updated_at", "2021-07-29 17:37:05.356206"], ["password_digest", "$2a$12$bttG/dTbFQ74hD2BvHeDw.uLxDAE/2BtwPWehbyJytjqOH5fRsJIy"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-49@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Will Lowe"], ["email", "sample-49@email.com"], ["created_at", "2021-07-29 17:37:05.653329"], ["updated_at", "2021-07-29 17:37:05.653329"], ["password_digest", "$2a$12$XLFV4pyOeFtjwXQOj9o38uEfmKHrDvz2XpAxAoBhCRLCTxvScUXPa"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-50@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jonathon Stark"], ["email", "sample-50@email.com"], ["created_at", "2021-07-29 17:37:05.953553"], ["updated_at", "2021-07-29 17:37:05.953553"], ["password_digest", "$2a$12$Hhnk3qnlbAgpl8FzC.sonu.Ur9GmK9FA8qsexcEvkB7P19Pk85d1i"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-51@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Gus Olson"], ["email", "sample-51@email.com"], ["created_at", "2021-07-29 17:37:06.257730"], ["updated_at", "2021-07-29 17:37:06.257730"], ["password_digest", "$2a$12$/MqWgCcwii8qejf2rSRGaubg8FyNkXP8ZaFt0.sqrxoi8XgRXtLUu"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-52@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Msgr. Jasmine Medhurst"], ["email", "sample-52@email.com"], ["created_at", "2021-07-29 17:37:06.556234"], ["updated_at", "2021-07-29 17:37:06.556234"], ["password_digest", "$2a$12$kdNUXbxDpwH3/P6iY/BdT.QlRxg.JHtUZlQ5njbt.csTRFvaV8GjW"]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-53@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (5.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Sen. Nickie Kuhlman"], ["email", "sample-53@email.com"], ["created_at", "2021-07-29 17:37:06.853345"], ["updated_at", "2021-07-29 17:37:06.853345"], ["password_digest", "$2a$12$YWmv43oWl0k5ot22AMbtBOgVGuaBKQAp939Bqvv3j1pV4ngViRdE."]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-54@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Sen. Denver Kulas"], ["email", "sample-54@email.com"], ["created_at", "2021-07-29 17:37:07.160771"], ["updated_at", "2021-07-29 17:37:07.160771"], ["password_digest", "$2a$12$.ZKKTtMaSIhSGCo66PavOOBLMahxHty3m17h3OHGozMeDH7.0pahu"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-55@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "The Hon. Rhonda Leannon"], ["email", "sample-55@email.com"], ["created_at", "2021-07-29 17:37:07.461864"], ["updated_at", "2021-07-29 17:37:07.461864"], ["password_digest", "$2a$12$SYcg6GeQmBJXcDp4n7BhR.63/OZt53LOR46neXEcvQoU9zzCd5gmq"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-56@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Leida Koss"], ["email", "sample-56@email.com"], ["created_at", "2021-07-29 17:37:07.759512"], ["updated_at", "2021-07-29 17:37:07.759512"], ["password_digest", "$2a$12$cL5xuf4BsbETIF2cwvaCdu3t25bbyTD4Adhe0kGvtT827.TIG9Ku6"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-57@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Mandy Dicki"], ["email", "sample-57@email.com"], ["created_at", "2021-07-29 17:37:08.058095"], ["updated_at", "2021-07-29 17:37:08.058095"], ["password_digest", "$2a$12$Z9PGTNpV2NJ8b/NAwZxc6uJl6XSRoN6UJx78O.sTeQx3yFCnhAVJu"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-58@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Zack Von"], ["email", "sample-58@email.com"], ["created_at", "2021-07-29 17:37:08.357162"], ["updated_at", "2021-07-29 17:37:08.357162"], ["password_digest", "$2a$12$AcKxl.nRcH.arl3BZDTnLejRardTZ64rZvl8r5TkY9w8VgYsO3Ebm"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-59@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Rep. Les Walker"], ["email", "sample-59@email.com"], ["created_at", "2021-07-29 17:37:08.656424"], ["updated_at", "2021-07-29 17:37:08.656424"], ["password_digest", "$2a$12$OZUtAsGF9I4fkxRivCmJieQ7XasZ5qdqPz8Y2UtUwmU/LDM4KNwRC"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-60@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Daina Tillman"], ["email", "sample-60@email.com"], ["created_at", "2021-07-29 17:37:08.964019"], ["updated_at", "2021-07-29 17:37:08.964019"], ["password_digest", "$2a$12$nz9YHfuz5er6hZ6RPJogQO.s9mdfpYpwg6YHHday/n.J9St6HobpC"]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 126.205.255.250 at 2021-07-29 17:43:04 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#top as HTML
+  Rendering static_pages/top.html.erb within layouts/application
+  Rendered static_pages/top.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (7.9ms)
+Completed 200 OK in 529ms (Views: 523.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users.1" for 126.205.255.250 at 2021-07-29 17:43:07 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as 
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered users/index.html.erb within layouts/application (1342.2ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (4.7ms)
+Completed 200 OK in 1409ms (Views: 1399.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/users.1?page=2" for 126.205.255.250 at 2021-07-29 17:43:11 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as 
+  Parameters: {"page"=>"2"}
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 30]]
+  Rendered users/index.html.erb within layouts/application (7.7ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.7ms)
+Completed 200 OK in 61ms (Views: 58.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users.1?page=3" for 126.205.255.250 at 2021-07-29 17:43:11 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as 
+  Parameters: {"page"=>"3"}
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 60]]
+  Rendered users/index.html.erb within layouts/application (6.4ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.3ms)
+Completed 200 OK in 70ms (Views: 66.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.1?page=2" for 126.205.255.250 at 2021-07-29 17:43:17 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as 
+  Parameters: {"page"=>"2"}
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 30]]
+  Rendered users/index.html.erb within layouts/application (7.6ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.7ms)
+Completed 200 OK in 61ms (Views: 57.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users.1?page=1" for 126.205.255.250 at 2021-07-29 17:43:18 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as 
+  Parameters: {"page"=>"1"}
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered users/index.html.erb within layouts/application (7.1ms)
+  Rendered layouts/_shim.html.erb (0.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.2ms)
+Completed 200 OK in 60ms (Views: 55.6ms | ActiveRecord: 0.5ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210729032227)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210729032227"]]
+  [1m[35m (8.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddIndexToUsersEmail (20210729032335)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210729032335"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddPasswordDigestToUsers (20210729032435)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "password_digest" varchar[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210729032435"]]
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddRememberDigestToUsers (20210729164747)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "users" ADD "remember_digest" varchar[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210729164747"]]
+  [1m[35m (3.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddAdminToUsers (20210729174347)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "admin" boolean DEFAULT 'f'[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210729174347"]]
+  [1m[35m (3.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-29 17:44:42.789775"], ["updated_at", "2021-07-29 17:44:42.789775"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "admin") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Sample User"], ["email", "sample@email.com"], ["created_at", "2021-07-29 17:44:48.854667"], ["updated_at", "2021-07-29 17:44:48.854667"], ["password_digest", "$2a$12$V.Qt0M3irxq1Jvtg4qrdOu9bUBTKRc3ai1kGLLFilYOrRRANOqWcS"], ["admin", "t"]]
+  [1m[35m (3.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-1@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jerry Swaniawski V"], ["email", "sample-1@email.com"], ["created_at", "2021-07-29 17:44:50.525884"], ["updated_at", "2021-07-29 17:44:50.525884"], ["password_digest", "$2a$12$f2S0L9P3XdHiPpMhy4XFg.d0vaogsBw51VvN2vCyL1ySvMOgahEGu"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-2@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Sandy Hirthe"], ["email", "sample-2@email.com"], ["created_at", "2021-07-29 17:44:50.827484"], ["updated_at", "2021-07-29 17:44:50.827484"], ["password_digest", "$2a$12$N.fdS2Y/hvw1G/Sr7Yej/eM8I6GanbAKWiT9QOPA5XnkjE4ygY9wq"]]
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-3@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Stefan Carter"], ["email", "sample-3@email.com"], ["created_at", "2021-07-29 17:44:51.135075"], ["updated_at", "2021-07-29 17:44:51.135075"], ["password_digest", "$2a$12$OpGh3AjNLQt7ZirjOAFAdO.Z6lsA1iqLyOSqmcBgy5kvTfRaOZ4ym"]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-4@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Daryl Harris III"], ["email", "sample-4@email.com"], ["created_at", "2021-07-29 17:44:51.433635"], ["updated_at", "2021-07-29 17:44:51.433635"], ["password_digest", "$2a$12$0FScWN4SP6.GjGIS8gN/yunrFhreUi52qYJBiKAwRyL6QrJTspCNy"]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-5@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Cedric Zieme"], ["email", "sample-5@email.com"], ["created_at", "2021-07-29 17:44:51.733482"], ["updated_at", "2021-07-29 17:44:51.733482"], ["password_digest", "$2a$12$tN4nMh.oi/ulQKNaoIxraO2QZgAmpc9g06Ff304lB4bCmBu9XsW.6"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-6@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Frances Thompson"], ["email", "sample-6@email.com"], ["created_at", "2021-07-29 17:44:52.032206"], ["updated_at", "2021-07-29 17:44:52.032206"], ["password_digest", "$2a$12$g27WF6ZMKc6CxCxvGZ5plONdXNY3h7MSsXGV2LySwpGmXJCcxlgtq"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-7@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Germaine Donnelly"], ["email", "sample-7@email.com"], ["created_at", "2021-07-29 17:44:52.330827"], ["updated_at", "2021-07-29 17:44:52.330827"], ["password_digest", "$2a$12$T1zWgi7N/CteX02S1dqCn.pIUmM2V.u/2x0NcT2NKMi67rUNRroKq"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-8@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Dewayne Okuneva DC"], ["email", "sample-8@email.com"], ["created_at", "2021-07-29 17:44:52.629622"], ["updated_at", "2021-07-29 17:44:52.629622"], ["password_digest", "$2a$12$GChECB3rMIgLhEGU/Mmg3erSeO51CRv13f9doHlCOjx6RDusubgnu"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-9@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Stasia Kerluke"], ["email", "sample-9@email.com"], ["created_at", "2021-07-29 17:44:52.928076"], ["updated_at", "2021-07-29 17:44:52.928076"], ["password_digest", "$2a$12$RytbLyVCKu.kfyUKX0WDsuMZNKyhY34kjQ4.NIu5F.58t6PPAQ/QK"]]
+  [1m[35m (9.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-10@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Casey King"], ["email", "sample-10@email.com"], ["created_at", "2021-07-29 17:44:53.237181"], ["updated_at", "2021-07-29 17:44:53.237181"], ["password_digest", "$2a$12$LRs7Ub7MtSQk6pjo/SnBCeydhUNEvy00dwpw5K5tfoOEgzLldJBn."]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-11@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Delmer Pagac"], ["email", "sample-11@email.com"], ["created_at", "2021-07-29 17:44:53.542418"], ["updated_at", "2021-07-29 17:44:53.542418"], ["password_digest", "$2a$12$ZFU.ZYahB3LohhA7nWeQ3uOKEnBGb6LBiqTwJXIxyDFjksacOonoi"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-12@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (2.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Forest Ferry"], ["email", "sample-12@email.com"], ["created_at", "2021-07-29 17:44:53.846812"], ["updated_at", "2021-07-29 17:44:53.846812"], ["password_digest", "$2a$12$oXA1gAun3lZZtN.YNUP5AO1zP97NIlPU2Absz7gZFSqZne3b.pEZq"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-13@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Elicia Braun"], ["email", "sample-13@email.com"], ["created_at", "2021-07-29 17:44:54.145409"], ["updated_at", "2021-07-29 17:44:54.145409"], ["password_digest", "$2a$12$FDp27l/JGgLnH6756xPWneK7.0Bx1/n.5S/jbXsmSDEU3BAJl6Dn."]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-14@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "The Hon. Erich Pfannerstill"], ["email", "sample-14@email.com"], ["created_at", "2021-07-29 17:44:54.445416"], ["updated_at", "2021-07-29 17:44:54.445416"], ["password_digest", "$2a$12$dryeUBfKjk9Cf5XLVZ1QzOO7Y.mRnLUm1aHmATtBMrMppuo246SgO"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-15@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Joe Funk Jr."], ["email", "sample-15@email.com"], ["created_at", "2021-07-29 17:44:54.745666"], ["updated_at", "2021-07-29 17:44:54.745666"], ["password_digest", "$2a$12$pMoMTR7ghu8aG/sS35qee.hQCo.VeXgrTrAwPfZJvOq3NTejdp.Ry"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-16@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Marcellus Wintheiser"], ["email", "sample-16@email.com"], ["created_at", "2021-07-29 17:44:55.044710"], ["updated_at", "2021-07-29 17:44:55.044710"], ["password_digest", "$2a$12$i70hziod7W40WpRynDDHe.4nFeVggR75ve.h0oPOq7c6BfLt96VUm"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-17@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Francie Simonis"], ["email", "sample-17@email.com"], ["created_at", "2021-07-29 17:44:55.357529"], ["updated_at", "2021-07-29 17:44:55.357529"], ["password_digest", "$2a$12$aNfc/ODRaASpWe619EkHY.ztIO7meG5.LpjJFOGplD6j8lgcfykMq"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-18@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Del Hagenes"], ["email", "sample-18@email.com"], ["created_at", "2021-07-29 17:44:55.655201"], ["updated_at", "2021-07-29 17:44:55.655201"], ["password_digest", "$2a$12$SvAjk9FmqyYzrIqyQ4drk.g0Wl45QqLZSAZtX8q71oLNg3SCfDpUC"]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-19@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Mitch Swift"], ["email", "sample-19@email.com"], ["created_at", "2021-07-29 17:44:55.968393"], ["updated_at", "2021-07-29 17:44:55.968393"], ["password_digest", "$2a$12$nniD8NT/UBfgKDWBhDNnJuaTUp5/43HLMMWE9QHyCwOPKqGB0C11q"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-20@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Pete Schuster V"], ["email", "sample-20@email.com"], ["created_at", "2021-07-29 17:44:56.269609"], ["updated_at", "2021-07-29 17:44:56.269609"], ["password_digest", "$2a$12$DHYNW14p65Xl6sqB4zGEu.ZPxTqGVyLnPefrH2vQaUblz3KO0..hS"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-21@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Maria Kuhn"], ["email", "sample-21@email.com"], ["created_at", "2021-07-29 17:44:56.569825"], ["updated_at", "2021-07-29 17:44:56.569825"], ["password_digest", "$2a$12$VatRJ1llDWob3fqfiGm4..3jTpzru9aAEYGF1KBPDNPQMTHjBLrK."]]
+  [1m[35m (6.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-22@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Felecia Greenfelder DVM"], ["email", "sample-22@email.com"], ["created_at", "2021-07-29 17:44:56.873888"], ["updated_at", "2021-07-29 17:44:56.873888"], ["password_digest", "$2a$12$em85DsJutbIZ70d4gXXv/OepLwQbDZjiOkh/WAXyVtQwN3dbptpCq"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-23@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Rodolfo Champlin"], ["email", "sample-23@email.com"], ["created_at", "2021-07-29 17:44:57.170824"], ["updated_at", "2021-07-29 17:44:57.170824"], ["password_digest", "$2a$12$lAURdQGBKz.knRFYdDgHpu.CMY.R.jQFauedhe7hAqJzLcEnELbHS"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-24@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Shannon Schiller"], ["email", "sample-24@email.com"], ["created_at", "2021-07-29 17:44:57.469769"], ["updated_at", "2021-07-29 17:44:57.469769"], ["password_digest", "$2a$12$Ow5iDkrVrWkPBsy81MDTze23upRKrAvMLh1UudvNw9E/aIigMraym"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-25@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (5.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lorilee Crona"], ["email", "sample-25@email.com"], ["created_at", "2021-07-29 17:44:57.770614"], ["updated_at", "2021-07-29 17:44:57.770614"], ["password_digest", "$2a$12$2l/0uE0jw2rzNxcnyYXwQevHFu/zEEgy4NDeZvzPV6zfvbCGv39hO"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-26@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Stacy Rodriguez"], ["email", "sample-26@email.com"], ["created_at", "2021-07-29 17:44:58.075683"], ["updated_at", "2021-07-29 17:44:58.075683"], ["password_digest", "$2a$12$/6B7cCkRL2dACSfn6Tbic.dGtWSL11CKFc8.XpLxGveJxdGDV9Xh2"]]
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-27@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (7.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Keva Purdy CPA"], ["email", "sample-27@email.com"], ["created_at", "2021-07-29 17:44:58.374844"], ["updated_at", "2021-07-29 17:44:58.374844"], ["password_digest", "$2a$12$u51/2SeEZPOt.cy.jOwl8uLN6y.vYmJc9V17.PS1XchoBdpTh1am2"]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-28@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Wilburn Harris"], ["email", "sample-28@email.com"], ["created_at", "2021-07-29 17:44:58.677746"], ["updated_at", "2021-07-29 17:44:58.677746"], ["password_digest", "$2a$12$MaQt3LxWF4.tnNXGrXM1hux82wXhUYIuFd/hd0fU1UjWHlPuydzua"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-29@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Marlin Bartell I"], ["email", "sample-29@email.com"], ["created_at", "2021-07-29 17:44:58.980916"], ["updated_at", "2021-07-29 17:44:58.980916"], ["password_digest", "$2a$12$JpnLkk5owWe6vyLhubgKou6bmPekeRLcTnbIi0BuhAb7OqYxVIjMW"]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-30@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Norma Koepp"], ["email", "sample-30@email.com"], ["created_at", "2021-07-29 17:44:59.278856"], ["updated_at", "2021-07-29 17:44:59.278856"], ["password_digest", "$2a$12$uQhwjLGzwGNRo6jn3x8jA..VG/0U7idJhwNyIROIlvlQCy4xsrCHS"]]
+  [1m[35m (21.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-31@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Amb. Kendrick Murphy"], ["email", "sample-31@email.com"], ["created_at", "2021-07-29 17:44:59.627457"], ["updated_at", "2021-07-29 17:44:59.627457"], ["password_digest", "$2a$12$UeJ/VqTx4DQowuORuDp1RuNFmkoSWSdMcAC9xf7sde.t0idk2qHD."]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-32@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Eldon Klocko"], ["email", "sample-32@email.com"], ["created_at", "2021-07-29 17:44:59.926475"], ["updated_at", "2021-07-29 17:44:59.926475"], ["password_digest", "$2a$12$Pnq9Ui8m9ss01vBwsLv4TeYvMhc.i5zlEOnjIEHityxwFx8NCaNeW"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-33@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Naoma Jakubowski"], ["email", "sample-33@email.com"], ["created_at", "2021-07-29 17:45:00.246894"], ["updated_at", "2021-07-29 17:45:00.246894"], ["password_digest", "$2a$12$qeeKxg5LVEamUV2EEb9d2etA3lOF2YQNRQbhjhtRfpJT6tZp8FXQ2"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-34@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Selena Bartell LLD"], ["email", "sample-34@email.com"], ["created_at", "2021-07-29 17:45:00.544350"], ["updated_at", "2021-07-29 17:45:00.544350"], ["password_digest", "$2a$12$wpzJCssCltmwTJxqqQncGuXxX4ML/Ah9tCSmM13QwpawnBzb5VAzq"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-35@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lila McLaughlin"], ["email", "sample-35@email.com"], ["created_at", "2021-07-29 17:45:00.841044"], ["updated_at", "2021-07-29 17:45:00.841044"], ["password_digest", "$2a$12$yaf6qe1EU05EMuRXYyXtg.v0b/7idtNNKCLa/lxCgpqKbNaV3NvYq"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-36@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Josef Balistreri"], ["email", "sample-36@email.com"], ["created_at", "2021-07-29 17:45:01.140270"], ["updated_at", "2021-07-29 17:45:01.140270"], ["password_digest", "$2a$12$kAkVZM.Uc3hYK6.wY8ou4ODv/rKQu6np/JAPZGeGblvztJ2o3A54G"]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-37@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Tommy Batz"], ["email", "sample-37@email.com"], ["created_at", "2021-07-29 17:45:01.439938"], ["updated_at", "2021-07-29 17:45:01.439938"], ["password_digest", "$2a$12$P4dCEyTszeds08.5OlohBOTskApO3XshQ7XXNkUnHFednRBEnizEO"]]
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-38@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jenette Casper"], ["email", "sample-38@email.com"], ["created_at", "2021-07-29 17:45:01.740081"], ["updated_at", "2021-07-29 17:45:01.740081"], ["password_digest", "$2a$12$YrtLc2fM.XhSjRiJ5jc.SuYcwqS2g.q2mhWADXtlWOCKPi5Y26eYS"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-39@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Kandice Hartmann I"], ["email", "sample-39@email.com"], ["created_at", "2021-07-29 17:45:02.080444"], ["updated_at", "2021-07-29 17:45:02.080444"], ["password_digest", "$2a$12$Y81bL5/WtL7xJ/uBTjsax.g2IWgb1SOzSvTobLPzJSdC0ugsAZ/mS"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-40@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Ashton Mayer DC"], ["email", "sample-40@email.com"], ["created_at", "2021-07-29 17:45:02.380553"], ["updated_at", "2021-07-29 17:45:02.380553"], ["password_digest", "$2a$12$kqRt.1AMD0J6vXoslSZTlu6DjHiEF1iCmM1FlKnV0DEVyUDtJhokm"]]
+  [1m[35m (7.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-41@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Carrol Lubowitz"], ["email", "sample-41@email.com"], ["created_at", "2021-07-29 17:45:02.680487"], ["updated_at", "2021-07-29 17:45:02.680487"], ["password_digest", "$2a$12$rR4tE5E.8xkmE112JmQn9uwOkCpluMB/wvxWisAtSKr6LKhVRHa0i"]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-42@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Rev. Bo Koss"], ["email", "sample-42@email.com"], ["created_at", "2021-07-29 17:45:02.977557"], ["updated_at", "2021-07-29 17:45:02.977557"], ["password_digest", "$2a$12$ODO5.FFZqP7d8wCyorHlteEugE7ihLMhVw.oRAtHRjvOMkeqpQ79e"]]
+  [1m[35m (7.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-43@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Antone Mayert"], ["email", "sample-43@email.com"], ["created_at", "2021-07-29 17:45:03.277007"], ["updated_at", "2021-07-29 17:45:03.277007"], ["password_digest", "$2a$12$.NxVRoSw4eTOULpUYPNRVuYXEo1Cs33I/xJxq1Eql7IU42s3w0vnK"]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-44@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Deidra Dare IV"], ["email", "sample-44@email.com"], ["created_at", "2021-07-29 17:45:03.577842"], ["updated_at", "2021-07-29 17:45:03.577842"], ["password_digest", "$2a$12$XgdDRszhYPveRiiKLPBhUuObXm5tt1v1zN9Rczpf.wYaYM8FtMAOm"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-45@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Ms. Maria Tillman"], ["email", "sample-45@email.com"], ["created_at", "2021-07-29 17:45:03.878899"], ["updated_at", "2021-07-29 17:45:03.878899"], ["password_digest", "$2a$12$DWsM/6ZPfh..VZU7NhSPYuyN8a/IaD5gMYe4Y1nZwo2zY5lic8w8i"]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-46@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Trey Pagac"], ["email", "sample-46@email.com"], ["created_at", "2021-07-29 17:45:04.175760"], ["updated_at", "2021-07-29 17:45:04.175760"], ["password_digest", "$2a$12$x2vkV9RQkSc69kcGkRvsGeBieUwqplagtNx.RD6ZyH.n5C/qI.wVm"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-47@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Dong Johns"], ["email", "sample-47@email.com"], ["created_at", "2021-07-29 17:45:04.475220"], ["updated_at", "2021-07-29 17:45:04.475220"], ["password_digest", "$2a$12$aA5DhZOi.tiS8sB6AfL/EOhlXqz2d9n.Ozd1UGbmgor0tKlmGgU7G"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-48@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Coleman Leannon"], ["email", "sample-48@email.com"], ["created_at", "2021-07-29 17:45:04.774565"], ["updated_at", "2021-07-29 17:45:04.774565"], ["password_digest", "$2a$12$/ZPzz0k.Vevot7P8lRn0/eVSCmZbyZuOLjs6kYLxyOsQtg67hG6YG"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-49@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Damian Gutmann"], ["email", "sample-49@email.com"], ["created_at", "2021-07-29 17:45:05.075438"], ["updated_at", "2021-07-29 17:45:05.075438"], ["password_digest", "$2a$12$1hvwQKBfMzZ6ioiVPIFYNuFOnQj5ATGzQZr4iDw4BiqgYup1hy0fe"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-50@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (4.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jerrica Osinski"], ["email", "sample-50@email.com"], ["created_at", "2021-07-29 17:45:05.374368"], ["updated_at", "2021-07-29 17:45:05.374368"], ["password_digest", "$2a$12$k95exHiu8NtpQ7APUpV8YuMM9Kvk4kAekFGXnz/cXCWCIxff91FvC"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-51@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Frank Crooks"], ["email", "sample-51@email.com"], ["created_at", "2021-07-29 17:45:05.683520"], ["updated_at", "2021-07-29 17:45:05.683520"], ["password_digest", "$2a$12$ILqdPTqdYsOOpJn6fM42AOV4IrCAKwYczjhfeblE/fnhoSQd7bB16"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-52@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Mr. Lazaro Runte"], ["email", "sample-52@email.com"], ["created_at", "2021-07-29 17:45:05.980769"], ["updated_at", "2021-07-29 17:45:05.980769"], ["password_digest", "$2a$12$oSouh4CfI6CNBQ9bgbJlzeC1chX5dzD06iHYbCSWKmWKlGSN2fZry"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-53@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Mrs. Emanuel Reynolds"], ["email", "sample-53@email.com"], ["created_at", "2021-07-29 17:45:06.279041"], ["updated_at", "2021-07-29 17:45:06.279041"], ["password_digest", "$2a$12$b5UNDPFdsE93jhhF1AHTnOO1uDpxjCGob9MwWDThBh6vxCtpT9sL."]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-54@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (5.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "The Hon. Lisandra Deckow"], ["email", "sample-54@email.com"], ["created_at", "2021-07-29 17:45:06.578029"], ["updated_at", "2021-07-29 17:45:06.578029"], ["password_digest", "$2a$12$tjWK4OIBi0XM1YkgggWEVOC4TzRVYFHOWZioXUxXEHOycOpFgLG4."]]
+  [1m[35m (9.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-55@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Elois Green V"], ["email", "sample-55@email.com"], ["created_at", "2021-07-29 17:45:06.885724"], ["updated_at", "2021-07-29 17:45:06.885724"], ["password_digest", "$2a$12$e4IlEuRa7WMy05i69RF/qeqz.mMg8QNhwev/Jml4rWlVSFQvJ7GyS"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-56@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Pres. Lou O'Reilly"], ["email", "sample-56@email.com"], ["created_at", "2021-07-29 17:45:07.184426"], ["updated_at", "2021-07-29 17:45:07.184426"], ["password_digest", "$2a$12$er6BCqJb0L3D0D6nbT2TmOPmxdKGdMjfsCt/6bCzQZfqsGVjo9KnS"]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-57@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Jake Kiehn"], ["email", "sample-57@email.com"], ["created_at", "2021-07-29 17:45:07.485100"], ["updated_at", "2021-07-29 17:45:07.485100"], ["password_digest", "$2a$12$4XZFsGCpEdtTY4VV8y0g.OHXpX/4zO6FvzZIzduI.Zqw/3lDGssa2"]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-58@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Danny Stehr Ret."], ["email", "sample-58@email.com"], ["created_at", "2021-07-29 17:45:07.781029"], ["updated_at", "2021-07-29 17:45:07.781029"], ["password_digest", "$2a$12$acbzvnZi5s55yzGM0roPterg04UsRWR5jsfxDFgbQ9XOBSfzlvh5."]]
+  [1m[35m (11.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-59@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (7.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Fr. Dede Stark"], ["email", "sample-59@email.com"], ["created_at", "2021-07-29 17:45:08.084781"], ["updated_at", "2021-07-29 17:45:08.084781"], ["password_digest", "$2a$12$3YrSMyGO7h/5IM.nGNOKn.2/YpR.TEV93MVahf0yjtgiMZBS.CN2."]]
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sample-60@email.com"], ["LIMIT", 1]]
+  [1m[35mSQL (3.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Curtis Thiel"], ["email", "sample-60@email.com"], ["created_at", "2021-07-29 17:45:08.393338"], ["updated_at", "2021-07-29 17:45:08.393338"], ["password_digest", "$2a$12$3lcxHm3SrYQc5z/1V8vAQeQ26Vb27ho02dhmPvnmDrq6Ri0.UOZKG"]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/users.1?page=1" for 126.205.255.250 at 2021-07-29 17:45:12 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as 
+  Parameters: {"page"=>"1"}
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  Rendered users/index.html.erb within layouts/application (15.7ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.6ms)
+Completed 200 OK in 72ms (Views: 65.2ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/users.1?page=1" for 126.205.255.250 at 2021-07-29 17:47:26 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as 
+  Parameters: {"page"=>"1"}
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (128.8ms)
+Completed 500 Internal Server Error in 137ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `current_user?' for #<#<Class:0x00007fae7c455f88>:0x00007fae7cfe58a8>
+Did you mean?  current_user
+               curent_user?
+               current_page?):
+    13:       <tr>
+    14:         <td><%= link_to user.name, user %></td>
+    15:         <td>
+    16:           <% if current_user.admin? && !current_user?(user) %>
+    17:            <%= link_to "削除", user, method: :delete,
+    18:             data: {confirm: "削除してよろしいですか？"},
+    19:             class: "btn btn-danger" %>
+  
+app/views/users/index.html.erb:16:in `block in _app_views_users_index_html_erb___4160662186520818321_70193699042500'
+app/views/users/index.html.erb:12:in `_app_views_users_index_html_erb___4160662186520818321_70193699042500'
+Started GET "/users.1?page=1" for 126.205.255.250 at 2021-07-29 17:51:06 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as 
+  Parameters: {"page"=>"1"}
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (167.4ms)
+Completed 500 Internal Server Error in 179ms (ActiveRecord: 2.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `current_user?' for #<#<Class:0x00007fae7dd32e98>:0x00007fae7dd53260>
+Did you mean?  current_user
+               curent_user?
+               current_page?):
+    13:       <tr>
+    14:         <td><%= link_to user.name, user %></td>
+    15:         <td>
+    16:           <% if current_user.admin? && !current_user?(user) %>
+    17:            <%= link_to "削除", user, method: :delete,
+    18:             data: {confirm: "削除してよろしいですか？"},
+    19:             class: "btn btn-danger" %>
+  
+app/views/users/index.html.erb:16:in `block in _app_views_users_index_html_erb___4160662186520818321_70193706025280'
+app/views/users/index.html.erb:12:in `_app_views_users_index_html_erb___4160662186520818321_70193706025280'
+Started GET "/" for 126.205.255.250 at 2021-07-29 17:51:31 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#top as HTML
+  Rendering static_pages/top.html.erb within layouts/application
+  Rendered static_pages/top.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_shim.html.erb (1.7ms)
+  Rendered layouts/_header.html.erb (3.9ms)
+Completed 200 OK in 385ms (Views: 380.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users.1?page=1" for 126.205.255.250 at 2021-07-29 17:51:34 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as 
+  Parameters: {"page"=>"1"}
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (1479.8ms)
+Completed 500 Internal Server Error in 1495ms (ActiveRecord: 1.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `current_user?' for #<#<Class:0x00007f7539064680>:0x00007f75390ac0c0>
+Did you mean?  current_user
+               curent_user?
+               current_page?):
+    13:       <tr>
+    14:         <td><%= link_to user.name, user %></td>
+    15:         <td>
+    16:           <% if current_user.admin? && !current_user?(user) %>
+    17:            <%= link_to "削除", user, method: :delete,
+    18:             data: {confirm: "削除してよろしいですか？"},
+    19:             class: "btn btn-danger" %>
+  
+app/views/users/index.html.erb:16:in `block in _app_views_users_index_html_erb__57896994071465569_70070722309200'
+app/views/users/index.html.erb:12:in `_app_views_users_index_html_erb__57896994071465569_70070722309200'
+Started GET "/users.1?page=1" for 126.205.255.250 at 2021-07-29 17:53:39 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as 
+  Parameters: {"page"=>"1"}
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (139.0ms)
+Completed 500 Internal Server Error in 149ms (ActiveRecord: 1.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `current_user?' for #<#<Class:0x00007f7540644b20>:0x00007f7540649378>
+Did you mean?  current_user
+               curent_user?
+               current_page?):
+    13:       <tr>
+    14:         <td><%= link_to user.name, user %></td>
+    15:         <td>
+    16:           <% if current_user.admin? && !current_user?(user) %>
+    17:            <%= link_to "削除", user, method: :delete,
+    18:             data: {confirm: "削除してよろしいですか？"},
+    19:             class: "btn btn-danger" %>
+  
+app/views/users/index.html.erb:16:in `block in _app_views_users_index_html_erb__57896994071465569_70070784109800'
+app/views/users/index.html.erb:12:in `_app_views_users_index_html_erb__57896994071465569_70070784109800'
+Started GET "/users.1?page=1" for 126.205.255.250 at 2021-07-29 17:54:30 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as 
+  Parameters: {"page"=>"1"}
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (164.4ms)
+Completed 500 Internal Server Error in 175ms (ActiveRecord: 1.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `current_user?' for #<#<Class:0x00007f75403d21a8>:0x00007f7541b13600>
+Did you mean?  current_user
+               curent_user?
+               current_page?):
+    13:       <tr>
+    14:         <td><%= link_to user.name, user %></td>
+    15:         <td>
+    16:           <% if current_user.admin? && !current_user?(user) %>
+    17:            <%= link_to "削除", user, method: :delete,
+    18:             data: {confirm: "削除してよろしいですか？"},
+    19:             class: "btn btn-danger" %>
+  
+app/views/users/index.html.erb:16:in `block in _app_views_users_index_html_erb__57896994071465569_70070782826540'
+app/views/users/index.html.erb:12:in `_app_views_users_index_html_erb__57896994071465569_70070782826540'
+Started GET "/users.1?page=1" for 126.205.255.250 at 2021-07-29 17:55:38 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as 
+  Parameters: {"page"=>"1"}
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (24.6ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 125ms (Views: 119.2ms | ActiveRecord: 1.5ms)
+
+
+Started DELETE "/users/2" for 126.205.255.250 at 2021-07-29 17:55:43 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"qD1MQiouavWjnaQGgz6g5YfpznPS6lCHMAw7n9jSvDuZ7iUl+xdTqyi/LvA1ZCGB3BOtZW+fvx1W6YkWl1QNAw==", "id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (3.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 2]]
+  [1m[35m (7.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to https://fbd3ea14572c49b19062489cb3676f9b.vfs.cloud9.ap-northeast-1.amazonaws.com/users
+Completed 302 Found in 18ms (ActiveRecord: 10.6ms)
+
+
+Started GET "/users" for 126.205.255.250 at 2021-07-29 17:55:43 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (11.8ms)
+  Rendered layouts/_shim.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (1.2ms)
+Completed 200 OK in 57ms (Views: 55.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 126.205.255.250 at 2021-07-29 17:55:45 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by StaticPagesController#top as HTML
+  Rendering static_pages/top.html.erb within layouts/application
+  Rendered static_pages/top.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_shim.html.erb (0.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.4ms)
+Completed 200 OK in 48ms (Views: 47.2ms | ActiveRecord: 0.1ms)
+
+
