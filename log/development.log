@@ -38,3 +38,134 @@ Processing by StaticPagesController#top as HTML
 Completed 200 OK in 49ms (Views: 48.5ms)
 
 
+Started GET "/" for 126.205.255.250 at 2021-07-29 03:11:28 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by StaticPagesController#top as HTML
+  Rendering static_pages/top.html.erb within layouts/application
+  Rendered static_pages/top.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 61ms (Views: 60.1ms)
+
+
+Started GET "/" for 126.205.255.250 at 2021-07-29 03:17:08 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by StaticPagesController#top as HTML
+  Rendering static_pages/top.html.erb within layouts/application
+  Rendered static_pages/top.html.erb within layouts/application (1.8ms)
+Completed 500 Internal Server Error in 82ms
+
+
+  
+ActionView::Template::Error (File to import not found or unreadable: bootstrap-sprockets.
+Load paths:
+  /home/ec2-user/environment/attendance_app/app/assets/config
+  /home/ec2-user/environment/attendance_app/app/assets/images
+  /home/ec2-user/environment/attendance_app/app/assets/javascripts
+  /home/ec2-user/environment/attendance_app/app/assets/stylesheets
+  /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/jquery-rails-4.4.0/vendor/assets/javascripts
+  /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/coffee-rails-4.2.2/lib/assets/javascripts
+  /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/actioncable-5.1.7/lib/assets/compiled
+  /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/actionview-5.1.7/lib/assets/compiled
+  /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/turbolinks-source-5.2.0/lib/assets/javascripts
+  /home/ec2-user/environment/attendance_app/node_modules):
+    4:     <title><%= full_title(yield(:title)) %></title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:     <%= render 'layouts/shim' %>
+   10:   </head>
+  
+app/assets/stylesheets/custom.scss:1
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___1370823500853576477_70299557267020'
+Started GET "/" for 126.205.255.250 at 2021-07-29 03:17:19 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by StaticPagesController#top as HTML
+  Rendering static_pages/top.html.erb within layouts/application
+  Rendered static_pages/top.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 5137ms (Views: 4990.7ms)
+
+
+Started GET "/" for 126.205.255.250 at 2021-07-29 03:17:25 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by StaticPagesController#top as HTML
+  Rendering static_pages/top.html.erb within layouts/application
+  Rendered static_pages/top.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 38ms (Views: 37.6ms)
+
+
+Started GET "/" for 126.205.255.250 at 2021-07-29 03:17:28 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by StaticPagesController#top as HTML
+  Rendering static_pages/top.html.erb within layouts/application
+  Rendered static_pages/top.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 43ms (Views: 41.5ms)
+
+
+Started GET "/" for 126.205.255.250 at 2021-07-29 03:19:06 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by StaticPagesController#top as HTML
+  Rendering static_pages/top.html.erb within layouts/application
+  Rendered static_pages/top.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 157ms (Views: 156.2ms)
+
+
+Started GET "/" for 126.205.255.250 at 2021-07-29 03:19:14 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by StaticPagesController#top as HTML
+  Rendering static_pages/top.html.erb within layouts/application
+  Rendered static_pages/top.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 48ms (Views: 46.8ms)
+
+
+Started GET "/" for 126.205.255.250 at 2021-07-29 03:19:14 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by StaticPagesController#top as HTML
+  Rendering static_pages/top.html.erb within layouts/application
+  Rendered static_pages/top.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 43ms (Views: 42.0ms)
+
+
+Started GET "/" for 126.205.255.250 at 2021-07-29 03:19:15 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by StaticPagesController#top as HTML
+  Rendering static_pages/top.html.erb within layouts/application
+  Rendered static_pages/top.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 44ms (Views: 43.0ms)
+
+
+Started GET "/" for 126.205.255.250 at 2021-07-29 03:19:16 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by StaticPagesController#top as HTML
+  Rendering static_pages/top.html.erb within layouts/application
+  Rendered static_pages/top.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 48ms (Views: 47.0ms)
+
+
+Started GET "/signup" for 126.205.255.250 at 2021-07-29 03:19:20 +0000
+Cannot render console from 126.205.255.250! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 45ms (Views: 43.9ms)
+
+
