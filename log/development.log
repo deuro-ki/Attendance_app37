@@ -2459,3 +2459,5 @@ Completed 200 OK in 61ms (Views: 59.7ms | ActiveRecord: 0.1ms)
 
 DEPRECATION WARNING: set the 'will_paginate.previous_label' key in your i18n locale instead of editing pagination_options (called from /home/ec2-user/environment/attendance_app/config/environment.rb:7:in `<top (required)>')
 DEPRECATION WARNING: set the 'will_paginate.next_label' key in your i18n locale instead of editing pagination_options (called from /home/ec2-user/environment/attendance_app/config/environment.rb:8:in `<top (required)>')
+DEPRECATION WARNING: set the 'will_paginate.previous_label' key in your i18n locale instead of editing pagination_options (called from /home/ec2-user/environment/attendance_app/config/environment.rb:7:in `<top (required)>')
+DEPRECATION WARNING: set the 'will_paginate.next_label' key in your i18n locale instead of editing pagination_options (called from /home/ec2-user/environment/attendance_app/config/environment.rb:8:in `<top (required)>')
