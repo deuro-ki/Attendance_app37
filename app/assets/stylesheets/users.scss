@@ -5,6 +5,11 @@
   text-align: center;
 }
 
+.btn-users-show {
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
 .label-form {
   margin-top: 5px;
 }
@@ -17,6 +22,28 @@
   td {
     vertical-align: middle;
   }  
+}
+
+.label-basic-info {
+  margin-top: 5px;
+}
+
+
+.btn-basic-info {
+  margin: 15px 0;
+  width: 30%;
+}
+
+#table-attendances {
+  th {
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+  td {
+    vertical-align: middle;
+    text-align: center;
+  }
 }
 
 
